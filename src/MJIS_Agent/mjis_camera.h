@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-
+#include "GigECamera_Types.h"
 #include "mjis_agent_macro.h"
 #include <qtimer.h>
 

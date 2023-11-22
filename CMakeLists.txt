@@ -18,6 +18,7 @@ find_package(Qt6 COMPONENTS Network REQUIRED)
 
 #添加库
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/BasicsSupport)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Camera)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Chart)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
@@ -54,7 +55,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 #包含日志模块的头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/LogHandler)
 #包含图标模块头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/chart)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Chart)
 #包含数据处理头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
 #包含机器学习头文件

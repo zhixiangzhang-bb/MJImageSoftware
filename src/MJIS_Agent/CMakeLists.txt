@@ -64,11 +64,8 @@ add_library (${PROJECT_NAME} SHARED
 			mjis_networkcamera.ui
 			mjis_agent_api.h
 			mjis_agent_macro.h
-
 			mjis_camera.cpp
 			mjis_camera.h
-			mjis_mvcamera.cpp
-			mjis_mvcamera.h
 )
 
 
@@ -85,7 +82,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)
 
 #判断编译器位数执行不同链接操作
 if(CMAKE_CL_64)    
-	target_link_libraries(${PROJECT_NAME}  PRIVATE 
+target_link_libraries(${PROJECT_NAME}  PRIVATE 
 	D:/Work/Clibrary/CUDA/v12.2/lib/x64/cudart_static.lib
 	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/ittnotify$<$<CONFIG:Debug>:d>.lib	
 	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/zlib$<$<CONFIG:Debug>:d>.lib
@@ -123,7 +120,7 @@ else()
 	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libtiff$<$<CONFIG:Debug>:d>.lib
 	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/IlmImf$<$<CONFIG:Debug>:d>.lib
 	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_videoio470$<$<CONFIG:Debug>:d>.lib
-	)
+)
 
 endif()
 
@@ -146,6 +143,7 @@ endif()
 #链接自定义库
 target_link_libraries(${PROJECT_NAME} PRIVATE  
     D:/MJLib/out/build/x64/src/MJLib_Vision/Debug/MJLib_Visiond.lib
+    D:/MJLib/out/build/x64/src/MJLib_Camera/Debug/MJLib_Camerad.lib
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE  
