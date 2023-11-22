@@ -29,9 +29,10 @@
 
 #include <QColorDialog>
 #include <QDir>
-#include "chartwidget.h"
+#include "mjis_chartwidget.h"
 #include "presenter.h"
 #include "mjis_agent_api.h"
+#include "mjis_hmi_api.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -569,7 +570,7 @@ private slots:
 	void actImageHistogram_clicked();
 
 	//灰度直方图绘制完成
-	void DrawChartSuccess(ChartWidget* chart, const QString& name);
+	void DrawChartSuccess(mjis::hmi::ChartWidget* chart, const QString& name);
 
 	//测试连接
 	void actTryRemotConnect_clicked();
@@ -657,7 +658,7 @@ signals:
 	void Sg_BackProcess(int page);
 
 	//绘制图表
-	void Sg_DrawChart(ChartWidget* chart,int page);
+	void Sg_DrawChart(mjis::hmi::ChartWidget* chart,int page);
 	
 };
 #endif // MAINWINDOW_H

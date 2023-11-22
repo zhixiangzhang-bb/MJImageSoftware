@@ -2,7 +2,7 @@
 
 #include <QInputDialog>
 #include <QApplication>
-#include "chartwidget.h"
+#include "mjis_hmi_api.h"
 #include "mjis_agent_api.h"
 
 
@@ -91,7 +91,7 @@ public:
 	void SaveImage(int page);
 
 	//绘制灰度直方图
-	void DrawChart(ChartWidget* chart, int page);
+	void DrawChart(mjis::hmi::ChartWidget* chart, int page);
 
 	void LoadModel();
 
@@ -105,5 +105,5 @@ signals:
 	void ChangeToolState();
 
 	//灰度直方图绘制完成
-	void DrawChartSuccess(ChartWidget* chart,const QString& name);
+	void DrawChartSuccess(mjis::hmi::ChartWidget* chart,const QString& name);
 };

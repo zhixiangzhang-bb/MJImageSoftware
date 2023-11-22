@@ -321,7 +321,7 @@ void Presenter::SaveImage(int page)
 
 
 //绘制灰度直方图
-void Presenter::DrawChart(ChartWidget* chart, int page)
+void Presenter::DrawChart(mjis::hmi::ChartWidget* chart, int page)
 {
 	try
 	{

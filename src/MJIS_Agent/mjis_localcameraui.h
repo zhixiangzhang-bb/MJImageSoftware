@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "mjis_agent_macro.h"
-#include "mjis_localcamera.h"
+#include "mjis_camera.h"
 
 /*****************************************************************
 * 类名称：本地相机UI

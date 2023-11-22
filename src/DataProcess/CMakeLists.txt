@@ -32,7 +32,7 @@ find_package(Qt6 COMPONENTS Network REQUIRED)
 
 
 #包含日志板块的头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/glog/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glog/include)
 
 
 set(CMAKE_DEBUG_POSTFIX "d")
@@ -66,7 +66,7 @@ add_compile_definitions(${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE   D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET zzxlib_DataProcess PROPERTY CXX_STANDARD 20)

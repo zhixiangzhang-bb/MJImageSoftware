@@ -6,7 +6,6 @@
 #include "SAFramelessHelper.h"
 #include "videopathset.h"
 #include <filesystem>
-#include "aboutme.h"
 #include <QFormLayout>
 #include <QSpinBox>
 #include <QDialogButtonBox>
@@ -40,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->initImage();//初始化图像学样式
     this->initForecast();
     this->initHelp();//在初始化帮助列表
-    //this->InitSignalsAndSlots();
+    this->InitSignalsAndSlots();
 
     ui->statusBar->showMessage("软件版本:初步设计版本V1.0 ");
 
@@ -624,7 +623,7 @@ void MainWindow::initlayout()
 //初始化信号和槽
 void MainWindow::InitSignalsAndSlots()
 {
-
+    /*
     //相机参数
     connect(actNewvisionproject, &QAction::triggered, this, &MainWindow::NewVisionProject,Qt::DirectConnection);
     connect(this, &MainWindow::Sg_CloseTab, presenter.get(), &Presenter::CloseTab, Qt::QueuedConnection);
@@ -719,7 +718,7 @@ void MainWindow::InitSignalsAndSlots()
     connect(m_DockManager, &ads::CDockManager::dockWidgetRemoved, this, &MainWindow::dockWidgetRemoved, Qt::DirectConnection);
 
     connect(ui->videotab, &QTabWidget::currentChanged, this, &MainWindow::TabCurrentChanged, Qt::DirectConnection);
-
+    */
     //帮助页面
     connect(actHelp, &QAction::triggered, this, &MainWindow::actHelp_clicked, Qt::QueuedConnection);
     connect(actAboutUs, &QAction::triggered, this, &MainWindow::actAboutUs_clicked, Qt::QueuedConnection);
@@ -1493,7 +1492,7 @@ void MainWindow::actImageFFT_clicked()
 //灰度直方图函数实现
 void MainWindow::actImageHistogram_clicked()
 {
-    ChartWidget* chart = new ChartWidget();
+    mjis::hmi::ChartWidget* chart = new mjis::hmi::ChartWidget();
 
     // 设置坐标轴
     chart->SetXYName("灰度级", "像素数");
@@ -1504,7 +1503,7 @@ void MainWindow::actImageHistogram_clicked()
 
 
 //灰度直方图绘制完成
-void MainWindow::DrawChartSuccess(ChartWidget* chart,const QString& name)
+void MainWindow::DrawChartSuccess(mjis::hmi::ChartWidget* chart,const QString& name)
 {
     this->BottomNesting(chart, name);
     chart->RescaleAxes();
@@ -1607,7 +1606,7 @@ void MainWindow::actHelp_clicked()
 //关于页面
 void MainWindow::actAboutUs_clicked()
 {
-    AboutMe am;
+    mjis::hmi::AboutMe am;
     am.exec();
 }
 

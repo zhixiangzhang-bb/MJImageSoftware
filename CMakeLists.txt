@@ -17,14 +17,14 @@ find_package(Qt6 COMPONENTS Network REQUIRED)
 
 
 #添加库
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/BasicsSupport)
+#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/BasicsSupport)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Camera)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Chart)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MachineLearning)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Agent)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/NeuralNetwork)
-
+#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/NeuralNetwork)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_HMI)
 
 
 #设置opencv库
@@ -42,32 +42,29 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/NeuralNetwork)
 
 
 #包含ads模块的头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/abs/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/abs/include)
 #包含SARibbon模块的头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/SARibbon/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/SARibbon/include)
 #包含OpenCV库板块的头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/opencv/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/opencv/include)
 #包含日志板块的头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/glog/include)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glog/include)
 #包含图像处理板块头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 #包含日志模块的头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/LogHandler)
-#包含图标模块头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/chart)
+#包含HMI模块头文件
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_HMI)
 #包含数据处理头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
 #包含机器学习头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MachineLearning)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
 #包含代理头文件
 include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Agent)
-#包含机器学习头文件
-#include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Camera)
 #包含任务流头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/taskflow)
 #包含相机头文件
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/mvcamera)
-
 
 
 #包含自定义库中的视觉板块
@@ -91,22 +88,14 @@ set(PROJECT_SOURCES
         src/main.cpp
         src/Control/presenter.h
         src/Control/presenter.cpp
-        #src/Control/imageagent.h
-        #src/Control/imageagent.cpp
         src/Control/cameraagent.h
         src/Control/cameraagent.cpp
-        #src/Control/tabwidget.cpp
-        #src/Control/tabwidget.h
-        #src/Control/tabwidget.ui
         src/Control/mainwindow.cpp
         src/Control/mainwindow.h
         src/Control/mainwindow.ui
         src/Control/videopathset.h
         src/Control/videopathset.cpp
         src/Control/videopathset.ui
-        src/Control/aboutme.h
-        src/Control/aboutme.cpp
-        src/Control/aboutme.ui
         src/LogHandler/SystemMessage.h
         src/LogHandler/SystemMessage.cpp
         src/LogHandler/SystemMessage.ui
@@ -119,9 +108,6 @@ set(PROJECT_SOURCES
 
 #设置UI文件
 set(UI_SOURCES
-        src/UI/chartwidget.h
-        src/UI/chartwidget.cpp
-        src/UI/chartwidget.ui
         Icon.qrc
 )
 
@@ -190,23 +176,20 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
 
 
 
+#链接图形界面布局库
+target_link_libraries(${PROJECT_NAME}  PRIVATE 
+                        ${CMAKE_SOURCE_DIR}/3rdparty/abs/lib/qt6advanceddocking$<$<CONFIG:Debug>:d>.lib
+                        ${CMAKE_SOURCE_DIR}/3rdparty/SARibbon/lib/SARibbonBar$<$<CONFIG:Debug>:d>.lib
+                        )
 
-target_link_libraries(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/abs/lib/qt6advanceddocking$<$<CONFIG:Debug>:d>.lib)
 
-
-target_link_libraries(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/SARibbon/lib/SARibbonBar$<$<CONFIG:Debug>:d>.lib)
 
 
 
 
 #链接库
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Chart)
-target_link_libraries(${PROJECT_NAME} PRIVATE  zzxlib_DataProcess)
-target_link_libraries(${PROJECT_NAME} PRIVATE  zzxlib_MachineLearning)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Agent)
-#target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera)
-target_link_libraries(${PROJECT_NAME} PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Agent MJIS_HMI MJIS_MachineLearning zzxlib_DataProcess)
+target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 
 
 

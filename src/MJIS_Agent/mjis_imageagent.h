@@ -2,8 +2,7 @@
 
 #include "mjis_tabwidget.h"
 #include "mjis_agent_macro.h"
-#include "mjis_localcamera.h"
-#include "mjis_mvcamera.h"
+#include "mjis_camera.h"
 #include <QStack>
 
 

@@ -86,7 +86,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE  Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 
 
 
