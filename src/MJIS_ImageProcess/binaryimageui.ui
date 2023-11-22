@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BinaryImageui</class>
+ <widget class="QDialog" name="BinaryImageui">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>模式选择</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>最大值</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>阈值</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="select">
+     <item>
+      <property name="text">
+       <string>二进制阈值化</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>反二进制阈值化</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>截断阈值化</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>零阈值化</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>反零阈值化</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="threshold">
+     <property name="maximum">
+      <number>255</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="max">
+     <property name="maximum">
+      <number>255</number>
+     </property>
+     <property name="value">
+      <number>255</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

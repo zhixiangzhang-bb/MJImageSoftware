@@ -1,0 +1,27 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Visual Studio 17 2022",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x86_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "CMAKE_CXX_FLAGS_DEBUG",
+          "value": "/MTd /Ob0 /Od /RTC1",
+          "type": "STRING"
+        },
+        {
+          "name": "CMAKE_CXX_FLAGS_RELEASE",
+          "value": "/MT /O2 /Ob2 /DNDEBUG",
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Bilateral</class>
+ <widget class="QDialog" name="Bilateral">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QDoubleSpinBox" name="sigmaColor">
+     <property name="maximum">
+      <double>9999.000000000000000</double>
+     </property>
+     <property name="value">
+      <double>1.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="dd">
+     <property name="maximum">
+      <number>9999</number>
+     </property>
+     <property name="value">
+      <number>3</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="type">
+     <item>
+      <property name="text">
+       <string>默认</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>使用常数进行补边</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>复制边界像素进行补边</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>对边界像素进行镜像反射补边</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>对边界像素进行镜像反射补边(101模式)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>对边界像素进行环绕补边</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="sigmaSpace">
+     <property name="value">
+      <double>1.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>模式</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>滤波器直径</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>颜色空间滤波器标准差</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>空间滤波器的标准差</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
