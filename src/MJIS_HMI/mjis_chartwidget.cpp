@@ -4,6 +4,8 @@
 
 #include "mjis_chartwidget.h"
 #include "ui_mjis_chartwidget.h"
+#include <QVector>
+
 
 namespace mjis {
 
@@ -32,7 +34,7 @@ namespace mjis {
         }
 
 
-
+        /*
         void ChartWidget::Histogram(QVector<double> xData, QVector<double> yData)
         {
             //直方图
@@ -53,6 +55,7 @@ namespace mjis {
             ui->widget->replot();
         }
 
+        */
 
         //更新图像适应界面
         void ChartWidget::RescaleAxes()

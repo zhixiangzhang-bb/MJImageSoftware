@@ -937,8 +937,8 @@ void MainWindow::actNewNetworkCamera_clicked()
 //添加本地相机或者USB相机
 void MainWindow::actNewLocalCamera_clicked()
 {
-    std::shared_ptr <LocalCameraUI> loccam(new LocalCameraUI);
-    connect(loccam.get(), &LocalCameraUI::SelcetNetcamId, this, &MainWindow::SelcetNetcamId);//返回选择的相机
+    std::shared_ptr <mjis::hmi::LocalCameraUI> loccam(new mjis::hmi::LocalCameraUI);
+    connect(loccam.get(), &mjis::hmi::LocalCameraUI::SelcetNetcamId, this, &MainWindow::SelcetNetcamId);//返回选择的相机
     loccam->exec();
 }
 

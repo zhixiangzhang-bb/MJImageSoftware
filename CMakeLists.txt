@@ -22,7 +22,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Camera)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Agent)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Core)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/NeuralNetwork)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_HMI)
 
@@ -60,12 +60,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
 #包含机器学习头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
 #包含代理头文件
-include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Agent)
+include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Core)
 #包含任务流头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/taskflow)
 #包含相机头文件
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/mvcamera)
-
+#包含相机模块头文件
+include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Camera)
 
 #包含自定义库中的视觉板块
 include_directories(D:/MJLib/src/MJLib_Vision)
@@ -86,20 +87,20 @@ set(TS_FILES MJImageSoft_zh_CN.ts)
 #设置项目文件
 set(PROJECT_SOURCES
         src/main.cpp
-        src/Control/presenter.h
-        src/Control/presenter.cpp
-        src/Control/cameraagent.h
-        src/Control/cameraagent.cpp
-        src/Control/mainwindow.cpp
-        src/Control/mainwindow.h
-        src/Control/mainwindow.ui
-        src/Control/videopathset.h
-        src/Control/videopathset.cpp
-        src/Control/videopathset.ui
-        src/LogHandler/SystemMessage.h
-        src/LogHandler/SystemMessage.cpp
-        src/LogHandler/SystemMessage.ui
-        src/LogHandler/loghead.h
+        #src/Control/presenter.h
+        #src/Control/presenter.cpp
+        #src/Control/cameraagent.h
+        #src/Control/cameraagent.cpp
+        src/mainwindow.cpp
+        src/mainwindow.h
+        src/mainwindow.ui
+        #src/Control/videopathset.h
+        #src/Control/videopathset.cpp
+        #src/Control/videopathset.ui
+        #src/LogHandler/SystemMessage.h
+        #src/LogHandler/SystemMessage.cpp
+        #src/LogHandler/SystemMessage.ui
+        #src/LogHandler/loghead.h
         Icon.qrc
         ${TS_FILES}
 )
@@ -188,7 +189,7 @@ target_link_libraries(${PROJECT_NAME}  PRIVATE
 
 
 #链接库
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Agent MJIS_HMI MJIS_MachineLearning zzxlib_DataProcess)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning zzxlib_DataProcess MJIS_Camera)
 target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 
 

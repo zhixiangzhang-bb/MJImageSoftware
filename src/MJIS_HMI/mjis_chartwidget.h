@@ -29,7 +29,7 @@ namespace mjis {
             void SetXYName(QString X, QString Y);
 
             //绘制直方图
-            void Histogram(QVector<double> xData, QVector<double> yData);
+            //void Histogram(QVector<double> xData, QVector<double> yData);
 
             //添加一条曲线
             void AddCurve(const QString& name, const QPen& color);

@@ -30,8 +30,7 @@
 #include <QColorDialog>
 #include <QDir>
 #include "mjis_chartwidget.h"
-#include "presenter.h"
-#include "mjis_agent_api.h"
+#include "mjis_core_api.h"
 #include "mjis_hmi_api.h"
 
 

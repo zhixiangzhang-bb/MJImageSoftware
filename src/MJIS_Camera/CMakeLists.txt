@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 
-
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 如果支持，请为 MSVC 编译器启用热重载。
 if (POLICY CMP0141)
@@ -35,7 +35,10 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/mvcamera)
 
 set(CMAKE_DEBUG_POSTFIX "d")
 
+
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+
+
 
 # 将源代码添加到此项目的可执行文件。
 add_library (${PROJECT_NAME}  SHARED
@@ -46,7 +49,7 @@ add_library (${PROJECT_NAME}  SHARED
 		mjis_mvcamera.cpp
 		mjis_mvcamera.h
 		mjis_camera_api.h
-		mjis_camera_macro.h
+		mjis_camera_global.h
 )
 
 
