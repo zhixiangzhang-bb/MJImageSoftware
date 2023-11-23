@@ -11,6 +11,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 
+#固定编译器选项，这里用较新的C++20
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
+
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -36,13 +41,13 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/opencv/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/taskflow)
 
 #包含图表库板块的头文件
-include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_HMI)
+include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_HMI/include)
 
 
 
 set(CMAKE_DEBUG_POSTFIX "d")
 
-
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 
 # 生成库
 add_library (${PROJECT_NAME} SHARED
@@ -67,22 +72,55 @@ add_library (${PROJECT_NAME} SHARED
 add_compile_definitions(${PROJECT_NAME})
 
 
-#OPENCV系列库
-target_link_libraries(${PROJECT_NAME}  PRIVATE 
-   D:/Work/Clibrary/opencv/install/x64/vc17/lib/opencv_core470$<$<CONFIG:Debug>:d>.lib
-   D:/Work/Clibrary/opencv/install/x64/vc17/lib/opencv_imgcodecs470$<$<CONFIG:Debug>:d>.lib
-   D:/Work/Clibrary/opencv/install/x64/vc17/lib/opencv_ml470$<$<CONFIG:Debug>:d>.lib
-   D:/Work/Clibrary/opencv/install/x64/vc17/lib/opencv_imgproc470$<$<CONFIG:Debug>:d>.lib
-   D:/Work/Clibrary/opencv/install/x64/vc17/lib/opencv_highgui470$<$<CONFIG:Debug>:d>.lib
-   D:/Work/Clibrary/opencv/install/x64/vc17/lib/opencv_dnn470$<$<CONFIG:Debug>:d>.lib
+
+#判断编译器位数执行不同链接操作
+if(CMAKE_CL_64)    
+	target_link_libraries(${PROJECT_NAME}  PRIVATE 
+	D:/Work/Clibrary/CUDA/v12.2/lib/x64/cudart_static.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/ittnotify$<$<CONFIG:Debug>:d>.lib	
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/zlib$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/ippicvmt.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/ippiw$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/ittnotify$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_core470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_imgproc470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_imgcodecs470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_highgui470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/libprotobuf$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/libpng$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/libopenjp2$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/libjpeg-turbo$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/libwebp$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/libtiff$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/IlmImf$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_videoio470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_dnn470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv/install/x64/vc17/staticlib/opencv_ml470$<$<CONFIG:Debug>:d>.lib
 )
 
 
-#CUDA系列库
-target_link_libraries(${PROJECT_NAME}  PRIVATE  
-	#E:/NVIDIAGPU/CUDA/lib/x64/cudart_static.lib
-	#E:/NVIDIA GPU/CUDA/lib/x64/cudnn.lib
+else()
+	target_link_libraries(${PROJECT_NAME}  PRIVATE 
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/ittnotify$<$<CONFIG:Debug>:d>.lib	
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/zlib$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_core470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_imgproc470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_imgcodecs470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_highgui470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libprotobuf$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libpng$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libopenjp2$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libjpeg-turbo$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libwebp$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/libtiff$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/IlmImf$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_videoio470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_dnn470$<$<CONFIG:Debug>:d>.lib
+	D:/Work/Clibrary/opencv_x86/install/x86/vc17/staticlib/opencv_ml470$<$<CONFIG:Debug>:d>.lib
 	)
+
+endif()
+
 
 
 #PyTorch系列库

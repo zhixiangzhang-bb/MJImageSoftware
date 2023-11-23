@@ -2,9 +2,11 @@
 
 #include <QObject>
 #include <QCoreApplication>
-#include "datainterface.h"
+#include "mjis_hmi_api.h"
 
-#if defined(zzxlib_DataProcess)
+
+
+#if defined(MJIS_DataProcess)
 #  define DataCommumication_EXPORT Q_DECL_EXPORT
 #else
 #  define DataCommumication_EXPORT Q_DECL_IMPORT

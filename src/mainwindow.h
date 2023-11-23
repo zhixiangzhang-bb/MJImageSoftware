@@ -29,7 +29,6 @@
 
 #include <QColorDialog>
 #include <QDir>
-#include "mjis_chartwidget.h"
 #include "mjis_core_api.h"
 #include "mjis_hmi_api.h"
 
@@ -84,10 +83,10 @@ private:
 	std::shared_ptr<QThread> AgentThread;
 
 	//主持人实例化
-	std::shared_ptr<Presenter> presenter;
+	std::shared_ptr<mjis::Presenter> presenter;
 
 	//图像处理代理
-	std::shared_ptr<ImageAgent> imageagent;
+	std::shared_ptr<mjis::ImageAgent> imageagent;
 
 	//下侧插入布局
 	void BottomNesting(QWidget* widget, QString name);
@@ -360,7 +359,7 @@ private:
 	void InitSignalsAndSlots();
 
 	//增加TAB页面函数
-	std::shared_ptr<Tabwidget> AddTab(QString iconpath, QString name, Tabwidget::VisualItemType Type);
+	std::shared_ptr<mjis::hmi::Tabwidget> AddTab(QString iconpath, QString name, mjis::hmi::Tabwidget::VisualItemType Type);
 
 	//初始化日志
 	void InitLogging();
@@ -375,7 +374,7 @@ private:
 	QVector<ads::CDockWidget*> CDockWidgetList;
 
 	//链表，用于保存视频显示界面
-	QVector<std::shared_ptr<Tabwidget>> TabWidgetList;
+	QVector<std::shared_ptr<mjis::hmi::Tabwidget>> TabWidgetList;
 
 	//视频保存路径
 	std::string VideoSavePath;
@@ -384,7 +383,7 @@ private:
 	std::string ImageSavePath;
 
 	//数据通讯管理
-	std::shared_ptr<DataCommumication> DatCC;
+	//std::shared_ptr<DataCommumication> DatCC;
 
 	//日志消息类
 	std::shared_ptr<LogHandler> MessageLogging;
@@ -437,13 +436,13 @@ private slots:
 	void actNewLocalCamera_clicked();
 
 	//根据相机选择的类型和ID执行
-	void SelcetNetcamId(uint idex, mjis::ICamera::CameraType Type);
+	void SelcetNetcamId(uint idex, mjis::camera::ICamera::CameraType Type);
 
 	//TAB页面关闭按钮响应
 	void TabClose(int index);
 
 	//关闭页面成功
-	void CloseSuccess(std::shared_ptr<Tabwidget> tab);
+	void CloseSuccess(std::shared_ptr<mjis::hmi::Tabwidget> tab);
 
 	//连接相机按钮
 	void actConnect_clicked();

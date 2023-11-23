@@ -39,7 +39,7 @@ namespace mjis {
         public:
             //项目类型枚举，在建立时通过这个确认
             enum     VisualItemType {
-                DefaultItem = -1,
+                DefaultItem,
                 CameraItem,
                 VideoItem,
                 ImageItem,

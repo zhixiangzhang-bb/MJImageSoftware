@@ -9,7 +9,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 
+#固定编译器选项，这里用较新的C++20
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 # 如果支持，请为 MSVC 编译器启用热重载。
 if (POLICY CMP0141)
@@ -22,11 +24,18 @@ project ("MJIS_HMI")
 
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt6 COMPONENTS PrintSupport REQUIRED) 
+find_package(Qt6 COMPONENTS Network REQUIRED) 
 
 
 
+
+
+#包含自身头文件
+include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_HMI/include)
 #包含相机模块头文件
 include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Camera)
+#包含数据处理头文件
+include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_NetWork)
 #包含OpenCV库板块的头文件
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/opencv/include)
 #包含日志板块的头文件
@@ -41,48 +50,56 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 
 #设置项目源文件
 set(PROJECT_SOURCES
-	MJIS_HMI.cpp  
-	mjis_chartwidget.cpp
-	qcustomplot.cpp
-	mjis_aboutme.cpp
-	mjis_localcameraui.cpp
-	mjis_networkcamera.cpp
-	mjis_systemmessage.cpp
-	mjis_tabwidget.cpp
-	mjis_videopathset.cpp
+	src/MJIS_HMI.cpp  
+	src/mjis_chartwidget.cpp
+	src/qcustomplot.cpp
+	src/mjis_aboutme.cpp
+	src/mjis_localcameraui.cpp
+	src/mjis_networkcamera.cpp
+	src/mjis_systemmessage.cpp
+	src/mjis_tabwidget.cpp
+	src/mjis_videopathset.cpp
+	src/mjis_datainterface.cpp
+	src/mjis_tcpset.cpp
+	src/mjis_datasetinformation.cpp
 )
 
 
 #设置项目头文件
 set(PROJECT_HEADER
-	mjis_hmi_global.h
-	mjis_hmi_api.h
-	MJIS_HMI.h  
-	mjis_chartwidget.h
-	qcustomplot.h
-	mjis_aboutme.h
-	mjis_localcameraui.h
-	mjis_networkcamera.h
-	mjis_systemmessage.h
-	mjis_tabwidget.h
-	mjis_videopathset.h
+	include/mjis_hmi_global.h
+	include/mjis_hmi_api.h
+	include/MJIS_HMI.h  
+	include/mjis_chartwidget.h
+	include/qcustomplot.h
+	include/mjis_aboutme.h
+	include/mjis_localcameraui.h
+	include/mjis_networkcamera.h
+	include/mjis_systemmessage.h
+	include/mjis_tabwidget.h
+	include/mjis_videopathset.h
+	include/mjis_datainterface.h
+	include/mjis_tcpset.h
+	include/mjis_datasetinformation.h
 )
 
 
 
 #设置项目UI文件
 set(PROJECT_UI
-	mjis_chartwidget.ui
-	qcustomplot.ui
-	mjis_aboutme.ui
-	mjis_localcameraui.ui
-	mjis_networkcamera.ui
-	mjis_systemmessage.ui
-	mjis_tabwidget.ui
-	mjis_videopathset.ui
+	src/mjis_chartwidget.ui
+	src/mjis_aboutme.ui
+	src/mjis_localcameraui.ui
+	src/mjis_networkcamera.ui
+	src/mjis_systemmessage.ui
+	src/mjis_tabwidget.ui
+	src/mjis_videopathset.ui
+	src/mjis_datainterface.ui
+	src/mjis_tcpset.ui
+	src/mjis_datasetinformation.ui
 )
 
-
+	
 # 将源代码添加到此项目的共享库。
 add_library (${PROJECT_NAME} SHARED
 	${PROJECT_SOURCES}
@@ -142,8 +159,11 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::PrintSupport)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
+
+
 #链接库
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera MJIS_NetWork)
 target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 
 

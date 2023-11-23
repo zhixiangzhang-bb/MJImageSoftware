@@ -6,6 +6,7 @@
 #include <QDataStream>
 #include <QSettings>
 #include <QCheckBox>
+#include "mjis_network_global.h"
 
 
 /*****************************************************************

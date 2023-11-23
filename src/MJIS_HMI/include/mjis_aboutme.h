@@ -17,7 +17,7 @@ namespace mjis {
 
         class MJIS_HMI_API  AboutMe : public QDialog
         {
-            //Q_OBJECT
+            Q_OBJECT
 
         public:
             explicit AboutMe(QWidget* parent = nullptr);

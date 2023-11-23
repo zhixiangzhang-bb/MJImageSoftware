@@ -4,14 +4,14 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "SAFramelessHelper.h"
-#include "videopathset.h"
 #include <filesystem>
 #include <QFormLayout>
 #include <QSpinBox>
 #include <QDialogButtonBox>
-#include "mjis_ImageLibConnect.h"
 #include <QLabel>
 #include "configinterface.h"
+
+
 
 using namespace ads;
 
@@ -19,7 +19,7 @@ using namespace ads;
 MainWindow::MainWindow(QWidget *parent)
     : subtitle(new std::string),SARibbonMainWindow(parent)
     , AgentThread(new QThread())
-    , presenter(new Presenter())
+    , presenter(new mjis::Presenter())
     , imageagent(nullptr)
     , LeftArea(nullptr), DownArea(nullptr)
     ,ui(new Ui::MainWindow)
@@ -803,9 +803,9 @@ void MainWindow::dockWidgetRemoved(ads::CDockWidget* DockWidget)
 
 
 //增加TAB页面函数
-std::shared_ptr<Tabwidget> MainWindow::AddTab(QString iconpath, QString name, Tabwidget::VisualItemType Type)
+std::shared_ptr<mjis::hmi::Tabwidget> MainWindow::AddTab(QString iconpath, QString name, mjis::hmi::Tabwidget::VisualItemType Type)
 {
-    std::shared_ptr<Tabwidget> widget(new Tabwidget);
+    std::shared_ptr<mjis::hmi::Tabwidget> widget(new mjis::hmi::Tabwidget);
     TabWidgetList.append(widget);
     widget->SetItemStyle(Type);
     widget->setAttribute(Qt::WA_DeleteOnClose); //关闭时自动删除
@@ -825,7 +825,7 @@ void MainWindow::NewVisionProject()
     QString sName = QInputDialog::getText(this, "项目名称设置", "请输入项目名称", QLineEdit::Normal, "高压侧观测", &bOk);
     if (bOk)
     {
-        presenter->CreateImageAgent(this->AddTab("./icon/摄像头.svg", sName, Tabwidget::CameraItem).get());
+        presenter->CreateImageAgent(this->AddTab("./icon/摄像头.svg", sName, mjis::hmi::Tabwidget::CameraItem).get());
         LOG(INFO) << "添加相机项目";
     }
     else {
@@ -849,7 +849,7 @@ void MainWindow::actOpenImage_clicked()
     QString path = QFileDialog::getOpenFileName(this, "选择文件", "", "JPEG Files (*.jpg *.jpeg);;PNG Files (*.png);;BMP Files (*.bmp)");
     if (!path.isEmpty())
     {
-        presenter->CreateImageAgent(this->AddTab("./icon/图像处理.svg", path, Tabwidget::ImageItem).get());
+        presenter->CreateImageAgent(this->AddTab("./icon/图像处理.svg", path, mjis::hmi::Tabwidget::ImageItem).get());
         emit Sg_OpenImage(path, ui->videotab->currentIndex());
         LOG(INFO) << "打开图片路径：" + path.toStdString() + "成功";
     }
@@ -865,7 +865,7 @@ void MainWindow::actNewModel_clicked()
     QString sName = QInputDialog::getText(this, "项目名称设置", "请输入模型名称", QLineEdit::Normal, "新建的模型", &bOk);
     if (bOk)
     {
-        this->AddTab("./icon/打开模型.svg", sName, Tabwidget::CameraItem)->layout()->addWidget(new zzxml::ConfigInterface());
+        this->AddTab("./icon/打开模型.svg", sName, mjis::hmi::Tabwidget::CameraItem)->layout()->addWidget(new zzxml::ConfigInterface());
         LOG(INFO) << "添加模型训练项目";
     }
     else {
@@ -927,8 +927,8 @@ void MainWindow::actTitleSet_stateChanged(bool state)
 //添加新的网络相机
 void MainWindow::actNewNetworkCamera_clicked()
 {
-    std::shared_ptr<networkcamera> netcam(new networkcamera);
-    connect(netcam.get(), &networkcamera::SelcetNetcamId, this, &MainWindow::SelcetNetcamId);//返回选择的相机
+    std::shared_ptr<mjis::hmi::networkcamera> netcam(new mjis::hmi::networkcamera);
+    connect(netcam.get(), &mjis::hmi::networkcamera::SelcetNetcamId, this, &MainWindow::SelcetNetcamId);//返回选择的相机
     netcam->exec();
 }
 
@@ -945,7 +945,7 @@ void MainWindow::actNewLocalCamera_clicked()
 
 
 //返回选择的相机信息，并且初始化相机
-void MainWindow::SelcetNetcamId(uint idex, mjis::ICamera::CameraType Type)
+void MainWindow::SelcetNetcamId(uint idex, mjis::camera::ICamera::CameraType Type)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     int num = ui->videotab->currentIndex();
@@ -986,7 +986,7 @@ void MainWindow::TabClose(int index)
 
 
 //关闭页面成功
-void MainWindow::CloseSuccess(std::shared_ptr<Tabwidget> tab)
+void MainWindow::CloseSuccess(std::shared_ptr<mjis::hmi::Tabwidget> tab)
 {
     int idx=TabWidgetList.indexOf(tab);
     TabWidgetList.removeAt(idx);   
@@ -1119,7 +1119,7 @@ void MainWindow::on_plainTextEdit_textChanged()
 //路径设置按钮点击事件函数
 void MainWindow::actImagePath_clicked()
 {
-    VideoPathSet videoset;
+    mjis::hmi::VideoPathSet videoset;
     videoset.setWindowTitle(QStringLiteral("图像文件设置"));
     videoset.setWindowIcon(this->windowIcon());
     videoset.exec();
@@ -1184,7 +1184,7 @@ void MainWindow::actGrayImage_clicked()
 //二值化函数实现
 void MainWindow::actBinaryImage_clicked()
 {
-    mjlib::ImageBinaryzation* process = ImageLibConnect::CreateBinary(true);
+    mjlib::ImageBinaryzation* process = new mjlib::ImageBinaryzation;
     if (process != nullptr) {
         emit Sg_ProcessImage(process, ui->videotab->currentIndex());
         LOG(INFO) << "图像处理模块：二值化完成";
@@ -1197,7 +1197,7 @@ void MainWindow::actBinaryImage_clicked()
 //均值滤波
 void MainWindow::actImageMeanFilter_clicked()
 {
-    mjlib::ImageMeanFilter* process = ImageLibConnect::CreateMean(true);
+    mjlib::ImageMeanFilter* process = new mjlib::ImageMeanFilter;
     if (process != nullptr) {
         emit Sg_ProcessImage(process, ui->videotab->currentIndex());
     }
@@ -1208,7 +1208,7 @@ void MainWindow::actImageMeanFilter_clicked()
 //高斯滤波
 void MainWindow::actImageGaussianFilter_clicked()
 {
-    mjlib::ImageGaussianFilter* process = ImageLibConnect::CreateGaussian(true);
+    mjlib::ImageGaussianFilter* process = new mjlib::ImageGaussianFilter;
     if (process != nullptr) {
         emit Sg_ProcessImage(process, ui->videotab->currentIndex());
     }
@@ -1219,7 +1219,7 @@ void MainWindow::actImageGaussianFilter_clicked()
 //中值滤波
 void MainWindow::actImageMedianFilter_clicked()
 {
-    mjlib::ImageMedianFilter* process = ImageLibConnect::CreateMedian(true);
+    mjlib::ImageMedianFilter* process = new mjlib::ImageMedianFilter;
     if (process != nullptr) {
         emit Sg_ProcessImage(process, ui->videotab->currentIndex());
         LOG(INFO) << "图像处理模块：中值滤波完成";
@@ -1232,7 +1232,7 @@ void MainWindow::actImageMedianFilter_clicked()
 //双边滤波
 void MainWindow::actImageBilateralFilter_clicked()
 {
-    mjlib::ImageBilateralFilter* process = ImageLibConnect::CreateBilateral(true);
+    mjlib::ImageBilateralFilter* process = new mjlib::ImageBilateralFilter;
     if (process != nullptr) {
         emit Sg_ProcessImage(process, ui->videotab->currentIndex());
         LOG(INFO) << "图像处理模块：双边滤波完成";
@@ -1514,12 +1514,14 @@ void MainWindow::DrawChartSuccess(mjis::hmi::ChartWidget* chart,const QString& n
 //测试连接
 void MainWindow::actTryRemotConnect_clicked()
 {
+    /*
     if (DataCommumication::Ping("192.168.1.2")) {
         LOG(INFO) << "数据连接模块：连接失败";
     }
     else {
         LOG(INFO) << "数据连接模块：连接成功";
     }
+    */
 }
 
 
@@ -1618,13 +1620,13 @@ void MainWindow::TabCurrentChanged(int index)
     if (index >= 0) {
         switch (TabWidgetList[index]->GetItemStyle())
         {
-        case Tabwidget::CameraItem:
+        case mjis::hmi::Tabwidget::CameraItem:
             ChangeCameraState();
             break;
-        case Tabwidget::ImageItem:
+        case mjis::hmi::Tabwidget::ImageItem:
             ChangeImageState(index);
             break;
-        case Tabwidget::VideoItem:
+        case mjis::hmi::Tabwidget::VideoItem:
             break;
         default:
             break;

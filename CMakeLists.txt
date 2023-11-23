@@ -20,7 +20,7 @@ find_package(Qt6 COMPONENTS Network REQUIRED)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/BasicsSupport)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Camera)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_NetWork)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Core)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/NeuralNetwork)
@@ -54,9 +54,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 #包含日志模块的头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/LogHandler)
 #包含HMI模块头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_HMI)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_HMI/include)
 #包含数据处理头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/DataProcess)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_NetWork)
 #包含机器学习头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
 #包含代理头文件
@@ -87,21 +87,9 @@ set(TS_FILES MJImageSoft_zh_CN.ts)
 #设置项目文件
 set(PROJECT_SOURCES
         src/main.cpp
-        #src/Control/presenter.h
-        #src/Control/presenter.cpp
-        #src/Control/cameraagent.h
-        #src/Control/cameraagent.cpp
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
-        #src/Control/videopathset.h
-        #src/Control/videopathset.cpp
-        #src/Control/videopathset.ui
-        #src/LogHandler/SystemMessage.h
-        #src/LogHandler/SystemMessage.cpp
-        #src/LogHandler/SystemMessage.ui
-        #src/LogHandler/loghead.h
-        Icon.qrc
         ${TS_FILES}
 )
 
@@ -189,8 +177,17 @@ target_link_libraries(${PROJECT_NAME}  PRIVATE
 
 
 #链接库
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning zzxlib_DataProcess MJIS_Camera)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning  MJIS_Camera MJIS_DataProcess)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)
+#target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Chart)
+#target_link_libraries(${PROJECT_NAME} PRIVATE  zzxlib_DataProcess)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_MachineLearning)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning)
+#链接谷歌日志库
 target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
+
 
 
 

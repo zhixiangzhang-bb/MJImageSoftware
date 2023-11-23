@@ -8,3 +8,6 @@
 #include "mjis_videopathset.h"
 #include "mjis_localcameraui.h"
 #include "mjis_networkcamera.h"
+#include "mjis_datainterface.h"
+#include "mjis_datasetinformation.h"
+#include "mjis_tcpset.h"

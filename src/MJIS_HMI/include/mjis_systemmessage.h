@@ -6,10 +6,9 @@
 
 
 #include <QWidget>
-#include <glog/logging.h>
 #include <QDateTime>
 #include <QPlainTextEdit>
-
+#include "mjis_hmi_global.h"
 
 namespace Ui {
 	class SystemMessage;
