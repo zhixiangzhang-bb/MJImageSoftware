@@ -11,6 +11,9 @@
 #include <glog/logging.h>
 #include "mjis_hmi_global.h"
 
+
+
+
 namespace Ui {
 	class SystemMessage;
 }
@@ -32,7 +35,7 @@ namespace mjis {
 
 
 
-		class LogHandler :public google::LogSink
+		class  LogHandler :public google::LogSink
 		{
 		public:
 			//重写日志消息流
@@ -68,7 +71,7 @@ namespace mjis {
 
 
 
-		class SystemMessage : public QWidget
+		class MJIS_HMI_API SystemMessage : public QWidget
 		{
 			Q_OBJECT
 

@@ -1,5 +1,5 @@
 ﻿
-#include "loghead.h"
+//#include "loghead.h"
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
@@ -100,8 +100,6 @@ void MainWindow::InitLogging()
 
 void MainWindow::initMain()//初始化主页
 {
-
-    const QString currentPath = QCoreApplication::applicationDirPath();
     SARibbonPannel* Main_pannel1;//主页标签页分项名
     SARibbonPannel* Main_pannel2;//主页标签页分项名
     SARibbonPannel* Main_pannel3;//主页标签页分项名
@@ -119,45 +117,45 @@ void MainWindow::initMain()//初始化主页
     Main_pannel7 = this->categoryMain->addPannel(("空化预测"));
     Main_pannel8 = this->categoryMain->addPannel(("视图"));
     this->actNewvisionproject = new QAction(this);//新建文件按钮
-    this->Setentry(actNewvisionproject,"新建相机", currentPath+"/icon/新建窗口.svg","actNewvisionproject",Main_pannel1);
+    this->Setentry(actNewvisionproject,"新建相机", "/icon/新建窗口.svg","actNewvisionproject",Main_pannel1);
     this->actOpenImage = new QAction(this);//打开图片按钮
-    this->Setentry(actOpenImage,"打开图片","./icon/打开图片.svg","actOpenImage",Main_pannel1);
+    this->Setentry(actOpenImage,"打开图片", "/icon/打开图片.svg","actOpenImage",Main_pannel1);
 
 
     this->actNewLocalCamera = new QAction(this);
-    this->Setentry(actNewLocalCamera, "本地设备", currentPath+"/icon/添加设备.svg", "actNewvision", Main_pannel2);
+    this->Setentry(actNewLocalCamera, "本地设备", "/icon/添加设备.svg", "actNewvision", Main_pannel2);
     this->actNewNetworkCamera = new QAction(this);
-    this->Setentry(actNewNetworkCamera, "网络设备", currentPath+"/icon/添加设备.svg", "actNewNetworkCamera", Main_pannel2);
+    this->Setentry(actNewNetworkCamera, "网络设备", "/icon/添加设备.svg", "actNewNetworkCamera", Main_pannel2);
     this->actSimulationCamera = new QAction(this);
-    this->Setentry(actSimulationCamera, "仿真相机", "./icon/仿真相机.svg", "actSimulationCamera", Main_pannel2);
+    this->Setentry(actSimulationCamera, "仿真相机", "/icon/仿真相机.svg", "actSimulationCamera", Main_pannel2);
 
 
     this->actConnect = new QAction(this);
-    this->Setentry(actConnect, "连接相机", "./icon/连接.svg", "actConnect", Main_pannel3);
+    this->Setentry(actConnect, "连接相机", "/icon/连接.svg", "actConnect", Main_pannel3);
     this->actDisConnect = new QAction(this);
-    this->Setentry(actDisConnect, "断开连接", "./icon/取消连接.svg", "actDisConnect", Main_pannel3);
+    this->Setentry(actDisConnect, "断开连接", "/icon/取消连接.svg", "actDisConnect", Main_pannel3);
     this->actPlay = new QAction(this);
-    this->Setentry(actPlay, "开始采集", "./icon/播放.svg", "actPlay", Main_pannel3);
+    this->Setentry(actPlay, "开始采集", "/icon/播放.svg", "actPlay", Main_pannel3);
     this->actPause = new QAction(this);
-    this->Setentry(actPause, "停止采集", "./icon/暂停.svg", "actPause", Main_pannel3);
+    this->Setentry(actPause, "停止采集", "/icon/暂停.svg", "actPause", Main_pannel3);
 
 
     this->actRecord = new QAction(this);
-    this->Setentry(actRecord, "录 制", "./icon/开始录制视频.svg", "actRecord", Main_pannel4);
+    this->Setentry(actRecord, "录 制", "/icon/开始录制视频.svg", "actRecord", Main_pannel4);
     this->actStopRecord = new QAction(this);
-    this->Setentry(actStopRecord, "停止录制", "./icon/停止录制视频.svg", "actStopRecord", Main_pannel4);
+    this->Setentry(actStopRecord, "停止录制", "/icon/停止录制视频.svg", "actStopRecord", Main_pannel4);
     this->actSnap = new QAction(this);
-    this->Setentry(actSnap, "快 照", "./icon/连续采集.svg", "actSnap", Main_pannel4);
+    this->Setentry(actSnap, "快 照", "/icon/连续采集.svg", "actSnap", Main_pannel4);
     this->actStopSnap = new QAction(this);
-    this->Setentry(actStopSnap, "停止快照", "./icon/停止连续采集.svg", "actStopSnap", Main_pannel4);
+    this->Setentry(actStopSnap, "停止快照", "/icon/停止连续采集.svg", "actStopSnap", Main_pannel4);
     this->actImagePath = new QAction(this);
-    this->Setentry(actImagePath, "路径设置", "./icon/路径设置.svg", "actImagePath", Main_pannel4);
+    this->Setentry(actImagePath, "路径设置", "/icon/路径设置.svg", "actImagePath", Main_pannel4);
 
 
     this->actSetwebcam = new QAction(this);
-    this->Setentry(actSetwebcam, "设备参数", "./icon/设备管理.svg", "actSetwebcam", Main_pannel5);
+    this->Setentry(actSetwebcam, "设备参数", "/icon/设备管理.svg", "actSetwebcam", Main_pannel5);
     this->actTriggerSetting = new QAction(this);
-    this->Setentry(actTriggerSetting, "触发设置", "./icon/触发设置.svg", "actTriggerSetting", Main_pannel5);
+    this->Setentry(actTriggerSetting, "触发设置", "/icon/触发设置.svg", "actTriggerSetting", Main_pannel5);
 
 
     this->actTitleStart = new QAction(this);
@@ -167,7 +165,7 @@ void MainWindow::initMain()//初始化主页
 
 
     this->actLoadCavModel = new QAction(this);//新建设备参数
-    this->Setentry(actLoadCavModel, "载入模型", "./icon/导入配置.svg", "actLoadCavModel", Main_pannel7);
+    this->Setentry(actLoadCavModel, "载入模型", "/icon/导入配置.svg", "actLoadCavModel", Main_pannel7);
 
     //模型板块
     //this->actNewModel = new QAction(this);//打开图片按钮
@@ -222,7 +220,8 @@ void MainWindow::initMain()//初始化主页
 
 void MainWindow::initVision()//初始化视觉菜单
 {
-    /*
+    
+    /*0
     SARibbonPannel* Vision_pannel1;//视觉标签页分项名
     SARibbonPannel* Vision_pannel2;//视觉标签页分项名
     SARibbonPannel* Vision_pannel3;//视觉标签页分项名
@@ -237,7 +236,7 @@ void MainWindow::initVision()//初始化视觉菜单
     Vision_pannel5 =this->categoryVision->addPannel(("字幕"));
     Vision_pannel6 =this->categoryVision->addPannel(("预测模型"));
 
-    /*
+    
     this->actNewLocalCamera = new QAction(this);
     this->Setentry(actNewLocalCamera,"本地设备","./icon/添加设备.svg","actNewvision",Vision_pannel1);
     this->actNewNetworkCamera = new QAction(this);
@@ -341,21 +340,21 @@ void MainWindow::initImage()
 
     //工具栏
     this->actImageRevocation = new QAction(this);//新建后退按钮
-    this->Setentry(actImageRevocation, "撤 销", "./icon/撤销.svg", "actImageRevocation", Image_pannel1);
+    this->Setentry(actImageRevocation, "撤 销", "/icon/撤销.svg", "actImageRevocation", Image_pannel1);
     this->actImageRework = new QAction(this);//新建后退按钮
-    this->Setentry(actImageRework, "重 做", "./icon/重做.svg", "actImageRework", Image_pannel1);
+    this->Setentry(actImageRework, "重 做", "/icon/重做.svg", "actImageRework", Image_pannel1);
     this->actImageSave = new QAction(this);//新建后退按钮
-    this->Setentry(actImageSave, "保 存", "./icon/保存.svg", "actImageSave", Image_pannel1);
+    this->Setentry(actImageSave, "保 存", "/icon/保存.svg", "actImageSave", Image_pannel1);
 
 
 
     //滤波按钮组
-    this->actGrayImage = createAction("灰度化", "./icon/灰度化.svg");//新建灰度化按钮
-    this->actBinaryImage = createAction("二值化", "./icon/图像的二值化.svg");//新建二值化按钮
-    this->actImageBilateralFilter = createAction("双边滤波", "./icon/图像滤波.svg");//新建滤波按钮
-    this->actImageMeanFilter = createAction("均值模糊", "./icon/均值滤波.svg");//新建滤波按钮
-    this->actImageGaussianFilter = createAction("高斯模糊", "./icon/高斯滤波.svg");//新建滤波按钮
-    this->actImageMedianFilter = createAction("中值模糊", "./icon/中值滤波.svg");//新建滤波按钮
+    this->actGrayImage = createAction("灰度化", "/icon/灰度化.svg");//新建灰度化按钮
+    this->actBinaryImage = createAction("二值化", "/icon/图像的二值化.svg");//新建二值化按钮
+    this->actImageBilateralFilter = createAction("双边滤波", "/icon/图像滤波.svg");//新建滤波按钮
+    this->actImageMeanFilter = createAction("均值模糊", "/icon/均值滤波.svg");//新建滤波按钮
+    this->actImageGaussianFilter = createAction("高斯模糊", "/icon/高斯滤波.svg");//新建滤波按钮
+    this->actImageMedianFilter = createAction("中值模糊", "/icon/中值滤波.svg");//新建滤波按钮
     galleryFileter = Image_pannel2->addGallery();
     QList<QAction*> galleryFileterActions;
     galleryFileterActions.append(actGrayImage);
@@ -371,11 +370,11 @@ void MainWindow::initImage()
     galleryFileter->setCurrentViewGroup(group1);
 
     //图像识别
-    this->actCanny = createAction("Canny算子", "./icon/边缘检测.svg");
-    this->actSobel = createAction("Sobel算子", "./icon/边缘检测.svg");
-    this->actScharr = createAction("Scharr算子", "./icon/边缘检测.svg");
-    this->actLaplacian = createAction("Laplacian算子", "./icon/边缘检测.svg");
-    this->actRoberts = createAction("Roberts算子", "./icon/边缘检测.svg");
+    this->actCanny = createAction("Canny算子", "/icon/边缘检测.svg");
+    this->actSobel = createAction("Sobel算子", "/icon/边缘检测.svg");
+    this->actScharr = createAction("Scharr算子", "/icon/边缘检测.svg");
+    this->actLaplacian = createAction("Laplacian算子", "/icon/边缘检测.svg");
+    this->actRoberts = createAction("Roberts算子", "/icon/边缘检测.svg");
 
     galleryEdgeDetection = Image_pannel3->addGallery();
     QList<QAction*> galleryEdgeDetectionActions;
@@ -392,10 +391,10 @@ void MainWindow::initImage()
 
 
     //特诊提取
-    this->actSIFT = createAction("SIFT", "./icon/特征提取.svg");
-    this->actSURF = createAction("SURF", "./icon/特征提取.svg");
-    this->actBRISK = createAction("BRISK", "./icon/特征提取.svg");
-    this->actAKAZE = createAction("AKAZE", "./icon/特征提取.svg");
+    this->actSIFT = createAction("SIFT", "/icon/特征提取.svg");
+    this->actSURF = createAction("SURF", "/icon/特征提取.svg");
+    this->actBRISK = createAction("BRISK", "/icon/特征提取.svg");
+    this->actAKAZE = createAction("AKAZE", "/icon/特征提取.svg");
 
 
     galleryFeatureExtraction = Image_pannel4->addGallery();
@@ -413,31 +412,31 @@ void MainWindow::initImage()
 
     //色彩校正
     this->actBrightness = new QAction(this);
-    this->Setentry(actBrightness, "亮 度", "./icon/亮度.svg", "actBrightness", Image_pannel5);
+    this->Setentry(actBrightness, "亮 度", "/icon/亮度.svg", "actBrightness", Image_pannel5);
     this->actContrast = new QAction(this);
-    this->Setentry(actContrast, "对比度", "./icon/对比度.svg", "actContrast", Image_pannel5);
+    this->Setentry(actContrast, "对比度", "/icon/对比度.svg", "actContrast", Image_pannel5);
     this->actNTSC = new QAction(this);
-    this->Setentry(actNTSC, "饱和度", "./icon/饱和度.svg", "actNTSC", Image_pannel5);
+    this->Setentry(actNTSC, "饱和度", "/icon/饱和度.svg", "actNTSC", Image_pannel5);
     this->actCCT = new QAction(this);
-    this->Setentry(actCCT, "色 温", "./icon/色温.svg", "actCCT", Image_pannel5);
+    this->Setentry(actCCT, "色 温", "/icon/色温.svg", "actCCT", Image_pannel5);
     this->actHLS = new QAction(this);
-    this->Setentry(actHLS, "色彩平衡", "./icon/色彩平衡.svg", "actHLS", Image_pannel5);
+    this->Setentry(actHLS, "色彩平衡", "/icon/色彩平衡.svg", "actHLS", Image_pannel5);
     this->actLevels = new QAction(this);
-    this->Setentry(actLevels, "色 阶", "./icon/色阶.svg", "actLevels", Image_pannel5);
+    this->Setentry(actLevels, "色 阶", "/icon/色阶.svg", "actLevels", Image_pannel5);
 
     //形态学
     this->actDilation = new QAction(this);
-    this->Setentry(actDilation, "膨 胀", "./icon/膨胀.svg", "actDilation", Image_pannel6);
+    this->Setentry(actDilation, "膨 胀", "/icon/膨胀.svg", "actDilation", Image_pannel6);
     this->actErosion = new QAction(this);
-    this->Setentry(actErosion, "腐 蚀", "./icon/腐蚀.svg", "actErosion", Image_pannel6);
+    this->Setentry(actErosion, "腐 蚀", "/icon/腐蚀.svg", "actErosion", Image_pannel6);
 
 
 
     //图像分析
     this->actImageFFT = new QAction(this);
-    this->Setentry(actImageFFT, "频谱转换", "./icon/频谱分析.svg", "actImageFFT", Image_pannel7);
+    this->Setentry(actImageFFT, "频谱转换", "/icon/频谱分析.svg", "actImageFFT", Image_pannel7);
     this->actImageHistogram = new QAction(this);
-    this->Setentry(actImageHistogram, "直方图", "./icon/直方图.svg", "actImageHistogram", Image_pannel7);
+    this->Setentry(actImageHistogram, "直方图", "/icon/直方图.svg", "actImageHistogram", Image_pannel7);
 
 
 
@@ -490,25 +489,25 @@ void MainWindow::initForecast()
     Forecast_pannel3 = this->categoryCavitation->addPannel(("框架"));
 
     this->actModelTraining = new QAction(this);//新建数据测试连接
-    this->Setentry(actModelTraining, "模型训练", "./icon/模型训练.svg", "actModelTraining", Forecast_pannel1);
+    this->Setentry(actModelTraining, "模型训练", "/icon/模型训练.svg", "actModelTraining", Forecast_pannel1);
     this->actModelTesting = new QAction(this);//新建数据测试连接
-    this->Setentry(actModelTesting, "模型测试", "./icon/模型测试.svg", "actModelTesting", Forecast_pannel1);
+    this->Setentry(actModelTesting, "模型测试", "/icon/模型测试.svg", "actModelTesting", Forecast_pannel1);
     this->actModelSave = new QAction(this);//新建后退按钮
-    this->Setentry(actModelSave, "保 存", "./icon/保存.svg", "actModelSave", Forecast_pannel1);
+    this->Setentry(actModelSave, "保 存", "/icon/保存.svg", "actModelSave", Forecast_pannel1);
 
     this->actLoadOk = new QAction(this);//新建后退按钮
-    this->Setentry(actLoadOk, "OK文件夹", "./icon/ok.svg", "actLoadOk", Forecast_pannel2);
+    this->Setentry(actLoadOk, "OK文件夹", "/icon/ok.svg", "actLoadOk", Forecast_pannel2);
     this->actLoadNo = new QAction(this);//新建后退按钮
-    this->Setentry(actLoadNo, "NO文件夹", "./icon/NO.svg", "actLoadNo", Forecast_pannel2);
+    this->Setentry(actLoadNo, "NO文件夹", "/icon/NO.svg", "actLoadNo", Forecast_pannel2);
 
     this->actRandomForest = new QAction(this);//新建后退按钮
-    this->Setentry(actRandomForest, "随机森林", "./icon/随机森林.svg", "actRandomForest", Forecast_pannel3);
+    this->Setentry(actRandomForest, "随机森林", "/icon/随机森林.svg", "actRandomForest", Forecast_pannel3);
     this->actSVM = new QAction(this);//新建后退按钮
-    this->Setentry(actSVM, "SVM", "./icon/svm.svg", "actSVM", Forecast_pannel3);
+    this->Setentry(actSVM, "SVM", "/icon/svm.svg", "actSVM", Forecast_pannel3);
     this->actKNN = new QAction(this);//新建后退按钮
-    this->Setentry(actKNN, "KNN", "./icon/KNN.svg", "actKNN", Forecast_pannel3);
+    this->Setentry(actKNN, "KNN", "/icon/KNN.svg", "actKNN", Forecast_pannel3);
     this->actDeepLearning = new QAction(this);//新建后退按钮
-    this->Setentry(actDeepLearning, "深度学习", "./icon/深度学习.svg", "actDeepLearning", Forecast_pannel3);
+    this->Setentry(actDeepLearning, "深度学习", "/icon/深度学习.svg", "actDeepLearning", Forecast_pannel3);
 }
 
 
@@ -538,10 +537,11 @@ void MainWindow::initHelp()
 
 
 //添加标签页按钮，只限按钮
-void MainWindow::Setentry(QAction* button,QString name,QString path,QString objectname,SARibbonPannel* tabpage)
+inline void MainWindow::Setentry(QAction* button,QString name,QString path,QString objectname,SARibbonPannel* tabpage)
 {
+    const QString currentPath = QCoreApplication::applicationDirPath();
     button->setText(name);
-    button->setIcon(QIcon(path));
+    button->setIcon(QIcon(currentPath+path));
     button->setObjectName(objectname);
     tabpage->addLargeAction(button);
 }
@@ -552,7 +552,8 @@ void MainWindow::Setentry(QAction* button,QString name,QString path,QString obje
 //初始化布局
 void MainWindow::initlayout()
 {
-    /*
+    
+    
     //设置布局参数
     ads::CDockManager::setConfigFlag(ads::CDockManager::FocusHighlighting, true);
     ads::CDockManager::setConfigFlag(ads::CDockManager::AllTabsHaveCloseButton, true);   
@@ -563,7 +564,7 @@ void MainWindow::initlayout()
     ads::CDockManager::setConfigFlag(CDockManager::DragPreviewHasWindowFrame, false);
 
     //创建布局管理器
-    //m_DockManager = new ads::CDockManager(this);
+    m_DockManager = new ads::CDockManager(this);
 
     //设置中心窗口
     main = new ads::CDockWidget("主窗口");
@@ -572,13 +573,13 @@ void MainWindow::initlayout()
     CentralDockArea->setAllowedAreas(DockWidgetArea::OuterDockAreas);
     ui->videotab->setTabsClosable(true);
 
-
+    
     //创建通讯管理器
-    DatCC = std::make_shared<DataCommumication>(this);
-    netsetwid = new ads::CDockWidget("通讯设置");
-    netsetwid->setWidget(DatCC->ReturnUI());
-    LeftArea = m_DockManager->addDockWidget(ads::LeftDockWidgetArea, netsetwid, CentralDockArea);
-    LeftArea=m_DockManager->addDockWidgetTab(ads::LeftDockWidgetArea, netsetwid);
+    //DatCC = std::make_shared<DataCommumication>(this);
+    //netsetwid = new ads::CDockWidget("通讯设置");
+    //netsetwid->setWidget(DatCC->ReturnUI());
+    //LeftArea = m_DockManager->addDockWidget(ads::LeftDockWidgetArea, netsetwid, CentralDockArea);
+    //LeftArea=m_DockManager->addDockWidgetTab(ads::LeftDockWidgetArea, netsetwid);
     //auto netarea=m_DockManager->addDockWidget(ads::BottomDockWidgetArea, netsetwid, sysDockArea);
 
 
@@ -587,21 +588,23 @@ void MainWindow::initlayout()
     titletoolbar->setWidget(ui->titletoolbar);
     auto area = m_DockManager->addDockWidget(ads::InvalidDockWidgetArea, titletoolbar, LeftArea);
     m_DockManager->addDockWidgetTabToArea(titletoolbar, LeftArea);
-    //sysDockArea = m_DockManager->addDockWidget(ads::LeftDockWidgetArea, titletoolbar);
+    auto sysDockArea = m_DockManager->addDockWidget(ads::LeftDockWidgetArea, titletoolbar);
     //sysDockArea->close();
     //area->close();
-    LeftArea->close();
-    netsetwid->close();
-    titletoolbar->close();
+    //LeftArea->close();
+    //netsetwid->close();
+    //titletoolbar->close();
 
+    
     //默认添加系统日志界面,所有界面管理器都有一个出口统一释放内存
-    SystemMessage* systemmessage = new SystemMessage;
+    mjis::hmi::SystemMessage* systemmessage = new mjis::hmi::SystemMessage;
     systemmessagewid = new ads::CDockWidget("系统日志");
     systemmessagewid->setWidget(systemmessage);
     systemmessagewid->setFeature(CDockWidget::DockWidgetClosable,true);
     //把这个窗口默认插入到下边
     DownArea =m_DockManager->addDockWidget(ads::BottomDockWidgetArea, systemmessagewid, CentralDockArea);
-    //messagearea->close();
+
+    //messagearea->close();//首先关闭这个消息界面
 
 
 
@@ -615,7 +618,7 @@ void MainWindow::initlayout()
     //m_DockManager->addDockWidget(ads::BottomDockWidgetArea, systemwidget, processDockArea);
 
     ui->statusBar->showMessage("软件版本:初步设计版本V1.0");
-    */
+    
 }
 
 

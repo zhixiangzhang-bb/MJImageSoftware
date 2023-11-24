@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-
 #include "mjis_aboutme.h"
 #include "mjis_chartwidget.h"
 #include "mjis_systemmessage.h"
@@ -11,3 +10,6 @@
 #include "mjis_datainterface.h"
 #include "mjis_datasetinformation.h"
 #include "mjis_tcpset.h"
+#include "mjis_dockvideo.h"
+#include "mjis_configui.h"
+#include "mjis_processinginterface.h"

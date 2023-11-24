@@ -2,9 +2,8 @@
 
 #include <QInputDialog>
 #include <QApplication>
-#include "mjis_imageprocess_api.h"
+#include "mjis_core_global.h"
 #include "mjis_imageagent.h"
-
 
 namespace mjis {
 

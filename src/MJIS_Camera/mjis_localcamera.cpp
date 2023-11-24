@@ -9,8 +9,7 @@ namespace mjis {
         LocalCamera::LocalCamera(QObject* parent)
             : ICamera{ parent }, time(new QTimer)
         {
-            connectstate = false;
-            grapstate = false;
+
         }
 
 
@@ -20,7 +19,10 @@ namespace mjis {
         }
 
 
-
+        /**
+         * @brief 通过ID打开相机
+         * @return 返回是否打开成功
+        */
         bool LocalCamera::open()
         {
             cap.open(idx);
@@ -34,6 +36,10 @@ namespace mjis {
         }
 
 
+        /**
+         * @brief 关闭相机并释放资源
+         * @return 返回关闭状态
+        */
         bool LocalCamera::close()
         {
             connectstate = false;

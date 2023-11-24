@@ -2,7 +2,7 @@
 
 
 #include "mjlib_vision_api.h"
-#include "mjis_imageprocess_api.h"
+#include "mjis_hmi_api.h"
 #include <QObject>
 
 

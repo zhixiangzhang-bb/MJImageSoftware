@@ -42,6 +42,8 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/opencv/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glog/include)
 #包含相机头文件
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/mvcamera)
+#包含自定义库中的视觉板块
+include_directories(D:/MJLib/src/MJLib_Vision)
 
 
 
@@ -65,6 +67,9 @@ set(PROJECT_SOURCES
 	src/mjis_datainterface.cpp
 	src/mjis_tcpset.cpp
 	src/mjis_datasetinformation.cpp
+	src/mjis_configui.cpp
+	src/mjis_dockvideo.cpp
+	src/mjis_processinginterface.cpp
 )
 
 
@@ -84,6 +89,10 @@ set(PROJECT_HEADER
 	include/mjis_datainterface.h
 	include/mjis_tcpset.h
 	include/mjis_datasetinformation.h
+	include/mjis_configui.h
+	include/mjis_dockvideo.h
+	include/mjis_processinginterface.h
+
 )
 
 
@@ -100,6 +109,13 @@ set(PROJECT_UI
 	src/mjis_datainterface.ui
 	src/mjis_tcpset.ui
 	src/mjis_datasetinformation.ui
+	src/mean.ui
+    src/binaryimageui.ui
+    src/gaussian.ui
+    src/median.ui
+    src/Bilateral.ui
+	src/mjis_dockvideo.ui
+	src/mjis_processinginterface.ui
 )
 
 	
@@ -169,6 +185,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera MJIS_NetWork)
 target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 
+
+#链接自定义库
+target_link_libraries(${PROJECT_NAME} PRIVATE  
+    D:/MJLib/out/build/x64/src/MJLib_Vision/Debug/MJLib_Visiond.lib
+    D:/MJLib/out/build/x64/src/MJLib_Camera/Debug/MJLib_Camerad.lib
+)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

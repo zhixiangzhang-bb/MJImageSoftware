@@ -42,7 +42,8 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/taskflow)
 
 #包含图表库板块的头文件
 include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_HMI/include)
-
+#包含自定义库中的视觉板块
+include_directories(D:/MJLib/src/MJLib_Vision)
 
 
 set(CMAKE_DEBUG_POSTFIX "d")

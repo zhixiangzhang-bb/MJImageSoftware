@@ -17,9 +17,7 @@ find_package(Qt6 COMPONENTS Network REQUIRED)
 
 
 #添加库
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/BasicsSupport)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Camera)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_NetWork)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_MachineLearning)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_Core)
@@ -50,7 +48,7 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/opencv/include)
 #包含日志板块的头文件
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glog/include)
 #包含图像处理板块头文件
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/MJIS_ImageProcess)
 #包含日志模块的头文件
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/LogHandler)
 #包含HMI模块头文件
@@ -167,7 +165,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
 
 #链接图形界面布局库
 target_link_libraries(${PROJECT_NAME}  PRIVATE 
-                        ${CMAKE_SOURCE_DIR}/3rdparty/abs/lib/qt6advanceddocking$<$<CONFIG:Debug>:d>.lib
+                        D:/Work/Clibrary/Qt-Advanced-Docking-System-master/lib/qtadvanceddocking$<$<CONFIG:Debug>:d>.lib
                         ${CMAKE_SOURCE_DIR}/3rdparty/SARibbon/lib/SARibbonBar$<$<CONFIG:Debug>:d>.lib
                         )
 
@@ -177,7 +175,7 @@ target_link_libraries(${PROJECT_NAME}  PRIVATE
 
 
 #链接库
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning  MJIS_Camera MJIS_NetWork)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Core MJIS_HMI MJIS_MachineLearning  MJIS_Camera MJIS_NetWork)
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera)
 #链接谷歌日志库
 target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)

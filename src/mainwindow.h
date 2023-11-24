@@ -16,9 +16,6 @@
 #include <QColorDialog>
 
 
-#include "systemmessage.h"
-
-
 #include "DockAreaWidget.h"
 #include "DockAreaTitleBar.h"
 #include "DockAreaTabBar.h"
@@ -385,7 +382,7 @@ private:
 	//std::shared_ptr<DataCommumication> DatCC;
 
 	//日志消息类
-	std::shared_ptr<LogHandler> MessageLogging;
+	std::shared_ptr<mjis::hmi::LogHandler> MessageLogging;
 
 	//图表列表
 	QVector<std::shared_ptr<QWidget>> QWidgetList;

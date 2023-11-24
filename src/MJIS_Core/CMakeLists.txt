@@ -30,7 +30,7 @@ find_package(Qt6 COMPONENTS Network REQUIRED)
 
 
 #包含图像处理板块
-include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_ImageProcess)
+#include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_ImageProcess)
 #包含相机板块
 include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Camera)
 #包含HMI模块头文件
@@ -86,7 +86,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE  Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_HMI)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)
+#target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera)
 #target_link_libraries(${PROJECT_NAME} PRIVATE  zzxlib_DataProcess)
 

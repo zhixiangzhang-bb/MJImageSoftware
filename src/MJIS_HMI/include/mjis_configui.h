@@ -2,8 +2,8 @@
 
 
 #include <QDialog>
-#include "mjis_imageprocess_macro.h"
-
+#include "mjlib_vision_api.h"
+#include "mjis_hmi_global.h"
 
 
 

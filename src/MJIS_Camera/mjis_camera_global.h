@@ -64,7 +64,7 @@ namespace mjis {
 
 
             ICamera(QObject* parent = nullptr)
-                : QObject(parent), idx(-1), fps(30) {}
+                : QObject(parent), idx(-1), fps(30), connectstate(false), grapstate(false),Type (No){}
 
 
             Message Mess;
