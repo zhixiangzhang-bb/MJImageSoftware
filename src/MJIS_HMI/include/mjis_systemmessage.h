@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QDateTime>
 #include <QPlainTextEdit>
+#include <glog/logging.h>
 #include "mjis_hmi_global.h"
 
 namespace Ui {

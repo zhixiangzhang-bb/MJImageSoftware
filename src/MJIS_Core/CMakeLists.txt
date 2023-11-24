@@ -24,7 +24,7 @@ project ("MJIS_Core")
 
 
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
-
+find_package(Qt6 COMPONENTS Network REQUIRED) 
 
 
 
@@ -35,6 +35,8 @@ include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_ImageProcess)
 include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_Camera)
 #包含HMI模块头文件
 include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_HMI/include)
+#包含相机板块
+include_directories(${CMAKE_SOURCE_DIR}/src/MJIS_NetWork)
 
 #包含日志板块的头文件
 #include_directories(${CMAKE_SOURCE_DIR}/src/Image)
@@ -81,6 +83,7 @@ add_compile_definitions(${PROJECT_NAME})
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE  Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Network)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_HMI)
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)

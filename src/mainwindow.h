@@ -17,7 +17,6 @@
 
 
 #include "systemmessage.h"
-#include "DataCommumication.h"
 
 
 #include "DockAreaWidget.h"

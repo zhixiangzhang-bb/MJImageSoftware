@@ -5,6 +5,8 @@
 #include "ui_mjis_datainterface.h"
 
 
+
+
 namespace mjis {
 
     namespace hmi {
@@ -24,7 +26,7 @@ namespace mjis {
             //实例化后初始化配置文件
             InitConnectCofiguration();
 
-            LOG(INFO) << "通讯模块：实例化成功";
+            //LOG(INFO) << "通讯模块：实例化成功";
         }
 
 
@@ -123,7 +125,7 @@ namespace mjis {
             cnct->NewConnect(name, sshIP, sshPort, Style, localIP, localPort);
             this->AddTCPConnect(name, sshIP, cnct);
             this->ConnectConfigChange();
-            LOG(INFO) << "通讯模块：添加连接成功";
+            //LOG(INFO) << "通讯模块：添加连接成功";
         }
 
 
@@ -135,11 +137,11 @@ namespace mjis {
             ConfigControl::ReadIniList(settings, "name", namelist);
             if (namelist.contains(name)) {
                 QMessageBox::warning(nullptr, "警告", "存在名称相同的连接！");
-                LOG(ERROR) << "通讯模块：创建失败名称重复";
+                //LOG(ERROR) << "通讯模块：创建失败名称重复";
             }
             else {
                 CreateConnect(name, sshIP, sshPort, Style, localIP, localPort);
-                LOG(INFO) << "通讯模块：创建连接成功";
+                //LOG(INFO) << "通讯模块：创建连接成功";
             }
         }
 
@@ -149,7 +151,7 @@ namespace mjis {
         {
             net::NetConnect* netsender = qobject_cast<net::NetConnect*>(sender());
             if (netsender) {
-                LOG(ERROR) << "通讯模块：通讯错误:" << netsender->GetName().toStdString() << error.toStdString();
+                //LOG(ERROR) << "通讯模块：通讯错误:" << netsender->GetName().toStdString() << error.toStdString();
             }
         }
 
@@ -184,7 +186,7 @@ namespace mjis {
                     CreateConnect(name[i], sshIP[i], sshPort[i], static_cast<net::NetConnect::ConnectStyle>(style[i]), localIP[i], localPort[i]);
                 }
             }
-            LOG(INFO) << "通讯模块：读取配置成功";
+            //LOG(INFO) << "通讯模块：读取配置成功";
         }
 
 
@@ -220,7 +222,7 @@ namespace mjis {
             // 连接名称存配置文件
             ConfigControl::WriteIniList(settings, "localPort", localPort);
 
-            LOG(INFO) << "通讯模块：写入配置成功";
+            //LOG(INFO) << "通讯模块：写入配置成功";
         }
 
 
@@ -233,7 +235,7 @@ namespace mjis {
             QFile file(Path);
             if (file.exists()) {
                 ReadConnectConfig();
-                LOG(INFO) << "通讯模块：读取配置成功";
+                //LOG(INFO) << "通讯模块：读取配置成功";
             }
             else {
                 QVector<QString> name = { "测试用连接" };
@@ -255,7 +257,7 @@ namespace mjis {
                 // 连接名称存配置文件
                 ConfigControl::WriteIniList(settings, "localPort", localPort);
 
-                LOG(ERROR) << "通讯模块：连接配置不存在，执行自动创建";
+                //LOG(ERROR) << "通讯模块：连接配置不存在，执行自动创建";
 
             }
         }
@@ -299,7 +301,7 @@ namespace mjis {
                 ui->datalist->removeRow(0);
             }
 
-            LOG(INFO) << "通讯模块：配置数据列表成功";
+            //LOG(INFO) << "通讯模块：配置数据列表成功";
         }
 
 

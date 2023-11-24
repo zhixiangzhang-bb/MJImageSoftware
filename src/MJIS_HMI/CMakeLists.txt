@@ -44,6 +44,9 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glog/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/mvcamera)
 
 
+
+set(CMAKE_DEBUG_POSTFIX "d")
+
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 
 

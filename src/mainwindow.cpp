@@ -1060,7 +1060,7 @@ void MainWindow::actStopSnap_clicked()
 //字幕显示按钮
 void MainWindow::actTitleStart_clicked()
 {
-    emit Sg_StartSub(ui->videotab->currentIndex(), subtitle, DatCC->ReturnDataSting());
+    //emit Sg_StartSub(ui->videotab->currentIndex(), subtitle, DatCC->ReturnDataSting());
     this->actTitleStart->setEnabled(false);
     this->actTitleStop->setEnabled(true);
 }
@@ -1600,7 +1600,7 @@ void MainWindow::actKNN_clicked()
 //帮助页面
 void MainWindow::actHelp_clicked()
 {
-    DatCC->ReturnDataSting();
+    //DatCC->ReturnDataSting();
 }
 
 

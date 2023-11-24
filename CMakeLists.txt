@@ -177,14 +177,8 @@ target_link_libraries(${PROJECT_NAME}  PRIVATE
 
 
 #链接库
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning  MJIS_Camera MJIS_DataProcess)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess)
-#target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Chart)
-#target_link_libraries(${PROJECT_NAME} PRIVATE  zzxlib_DataProcess)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_MachineLearning)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning  MJIS_Camera MJIS_NetWork)
 target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_Camera)
-target_link_libraries(${PROJECT_NAME} PRIVATE  MJIS_ImageProcess MJIS_Core MJIS_HMI MJIS_MachineLearning)
 #链接谷歌日志库
 target_link_libraries(${PROJECT_NAME} PRIVATE  D:/Work/Clibrary/glog/lib/glog$<$<CONFIG:Debug>:d>.lib)
 

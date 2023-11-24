@@ -21,7 +21,7 @@
 
 
 
-class DataConvert  : public QObject
+class MJIS_NetWork_API DataConvert  : public QObject
 {
 	Q_OBJECT
 
@@ -121,7 +121,7 @@ public:
 
 
 
-class ConfigControl : public QObject
+class MJIS_NetWork_API ConfigControl : public QObject
 {
 	Q_OBJECT
 
@@ -180,7 +180,7 @@ private:
 
 
 
-class DataConvertManage : public QObject
+class MJIS_NetWork_API DataConvertManage : public QObject
 {
 	Q_OBJECT
 
